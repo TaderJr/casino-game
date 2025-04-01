@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mines - GoGamble Casino</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 60px);
+            grid-template-rows: repeat(5, 60px);
+            gap: 5px;
+            margin: 20px auto;
+            width: max-content;
+        }
+
+        .cell {
+            background-color: #444;
+            border: 2px solid #FFD700;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            line-height: 60px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .bomb {
+            background-color: red !important;
+        }
+
+        .safe {
+            background-color: green !important;
+        }
+
+        #backButton {
+            margin-top: 20px;
+            background-color: #FFD700;
+            color: #222;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #backButton:hover {
+            background-color: #cfa800;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>💣 Mines 💣</h1>
+    <h2>Balance: <span id="balance">Loading...</span></h2>
+
+    <label for="betAmount">Enter Bet Amount:</label>
+    <input type="number" id="betAmount" min="1" value="10">
+
+    <label for="bombs">Choose Bombs:</label>
+    <input type="number" id="bombs" min="1" max="24" value="5">
+    <button id="startGame">Start Game</button>
+
+    <div class="grid" id="grid"></div>
+
+    <h3>Multiplier: <span id="multiplier">1.0x</span></h3>
+    <button id="cashoutButton" disabled>Cashout (0 credits)</button>
+
+    <!-- Back to Home Button -->
+    <button id="backButton">Back to Home</button>
+
+    <script type="module" src="mines.js"></script>
+</body>
+
+</html>

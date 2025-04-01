@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoGamble Live Chat</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #FFD700;
+            color: #222;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 5px 0px 0px 5px;
+            cursor: pointer;
+            writing-mode: vertical-rl;
+            text-align: center;
+            font-weight: bold;
+            width: 40px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-container {
+            position: fixed;
+            right: -350px;
+            top: 0;
+            height: 100vh;
+            width: 350px;
+            background-color: #333;
+            padding: 15px;
+            transition: right 0.3s ease-in-out;
+            box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-container.open {
+            right: 0;
+        }
+
+        .messages {
+            height: 80vh;
+            overflow-y: auto;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .chat-input {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .chat-input button {
+            padding: 10px;
+            background-color: #FFD700;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #closeChat {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-toggle" id="chatToggle">➤ Chat</div>
+
+    <div class="chat-container" id="chatContainer">
+        <h2>GoGamble Live Chat</h2>
+        <button id="closeChat">✖ Close Chat</button>
+        <div class="messages" id="messages"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type a message...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script type="module" src="chat.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoGamble Casino</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .sidebar button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            font-size: 18px;
+            background-color: #FFD700;
+            color: #222;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sidebar button:hover {
+            background-color: #cfa800;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #FFD700;
+            color: #222;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 5px 0px 0px 5px;
+            cursor: pointer;
+            writing-mode: vertical-rl;
+            text-align: center;
+            font-weight: bold;
+            width: 40px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-container {
+            position: fixed;
+            right: -350px;
+            top: 0;
+            height: 100vh;
+            width: 350px;
+            background-color: #333;
+            padding: 15px;
+            transition: right 0.3s ease-in-out;
+            box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-container.open {
+            right: 0;
+        }
+
+        .messages {
+            height: 70vh;
+            overflow-y: auto;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .chat-input {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .chat-input button {
+            padding: 10px;
+            background-color: #FFD700;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        #closeChat {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Games</h2>
+        <button id="minesGame">💣 Mines</button>
+        <button id="crashGame">📉 Crash</button>
+        <button id="spinGame">🔄 Spin</button>
+        <button id="logoutButton">Log Out</button>
+    </div>
+
+    <div class="main-content">
+        <h1>🎰 GoGamble Casino 🎰</h1>
+        <h2>Balance: <span id="balance">Loading...</span></h2>
+    </div>
+
+    <div class="chat-toggle" id="chatToggle">➤ Chat</div>
+
+    <div class="chat-container" id="chatContainer">
+        <h2>GoGamble Live Chat</h2>
+        <button id="closeChat">✖ Close Chat</button>
+        <div class="messages" id="messages"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type a message...">
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="chat.js"></script>
+
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
+        import { getBalance } from "./auth.js";
+
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = "login.html";
+            } else {
+                document.getElementById("balance").innerText = await getBalance(user.uid);
+            }
+        });
+
+        document.getElementById("logoutButton").addEventListener("click", async () => {
+            await signOut(auth);
+            window.location.href = "login.html";
+        });
+
+        document.getElementById("minesGame").addEventListener("click", () => {
+            window.location.href = "mines.html";
+        });
+
+        document.getElementById("crashGame").addEventListener("click", () => {
+            window.location.href = "crash.html";
+        });
+
+        document.getElementById("spinGame").addEventListener("click", () => {
+            window.location.href = "spin.html"; // Link to the new Spin game
+        });
+    </script>
+
+</body>
+
+</html>

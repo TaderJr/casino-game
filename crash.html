@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crash - GoGamble Casino</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #multiplier {
+            font-size: 48px;
+            margin: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #222;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #cfa800;
+        }
+
+        #backButton {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📉 Crash 📉</h1>
+    <h2>Balance: <span id="balance">Loading...</span></h2>
+
+    <label for="betAmount">Enter Bet Amount:</label>
+    <input type="number" id="betAmount" min="1" value="10">
+    <button id="startGame">Start Game</button>
+
+    <h3>Multiplier: <span id="multiplier">x1.00</span></h3>
+    <button id="cashoutButton" disabled>Cashout (0 credits)</button>
+
+    <!-- 🔹 Crash History Section -->
+    <h3>Last 5 Crashes:</h3>
+    <ul id="crashHistory"></ul>
+
+    <!-- Back to Home Button -->
+    <button id="backButton">Back to Home</button>
+
+    <script type="module" src="crash.js"></script>
+</body>
+
+</html>

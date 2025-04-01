@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - GoGamble Casino</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #333;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #222;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #cfa800;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔐 Log In to GoGamble Casino</h1>
+        <input type="email" id="email" placeholder="Enter your email">
+        <input type="password" id="password" placeholder="Enter your password">
+        <button id="signUpButton">Sign Up</button>
+        <button id="loginButton">Login</button>
+        <button id="googleSignIn">Sign in with Google</button>
+    </div>
+
+    <script type="module">
+        import { googleLogin, emailSignUp, emailLogin } from "./auth.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-auth.js";
+
+        const auth = getAuth();
+
+        document.getElementById("googleSignIn").addEventListener("click", googleLogin);
+        document.getElementById("signUpButton").addEventListener("click", emailSignUp);
+        document.getElementById("loginButton").addEventListener("click", emailLogin);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = "home.html"; // Redirect to casino
+            }
+        });
+    </script>
+</body>
+
+</html>

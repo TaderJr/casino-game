@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to GoGamble Casino</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #333;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #222;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #cfa800;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎰 Welcome to GoGamble Casino 🎰</h1>
+        <p>The ultimate gaming experience awaits! Log in to start playing.</p>
+        <button id="enterCasino">Enter Casino</button>
+    </div>
+
+    <script>
+        document.getElementById("enterCasino").addEventListener("click", () => {
+            window.location.href = "login.html"; // Redirect to login page
+        });
+    </script>
+</body>
+
+</html>
